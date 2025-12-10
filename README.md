@@ -37,11 +37,10 @@ Maaf, dataset berupa video mentah yang telah diklasifikasikan:
 
 ## 📈 Evaluasi Klasifikasi Random Forest
 [**📂 File: evalOutput.csv**](Backend/evaluationData/evalOutput.csv)
+<img width="1153" height="631" alt="image" src="https://github.com/user-attachments/assets/b73e1f36-2afb-43e4-b4c3-6d7ef810da00" />
 
 **Perhitungan Precision:**
-
-<img width="454" height="455" alt="image" src="https://github.com/user-attachments/assets/cdbae3bc-bab9-444e-90eb-b7dac4a1d6d7" />
-
+<img width="396" height="281" alt="image" src="https://github.com/user-attachments/assets/45d648d7-30ca-4e52-a930-5f6c45c5197a" />
 
 ---
 
