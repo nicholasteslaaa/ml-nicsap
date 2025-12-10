@@ -3,8 +3,14 @@
 # Evaluasi Klasifikasi Random Forest
 $$
 Precision = \frac{TP}{TP+FP}
+$$
+$$
 Precision = \frac{1967}{1967+356}
+$$
+$$
 Precision = \frac{1967}{2323}
+$$
+$$
 Precision =  0.8467 * 100 = 84.67%
 $$
 
