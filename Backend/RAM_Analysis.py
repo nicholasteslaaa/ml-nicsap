@@ -1,5 +1,4 @@
-import cv2, numpy as np, pandas as pd,matplotlib.pyplot as plt,time,sys,random,os
-from collections import Counter
+import cv2, numpy as np,random,os
 from movementDetector import movementDetectionModel
 from randomForest import NoiseFilter
 from datetime import datetime
@@ -182,16 +181,17 @@ class RAM_Analysis:
                 color = (0,255,0) if label == "Valid" else (0,0,255)
                 
                 cv2.putText(curr_frame, f"Prediction: {label} {prob[pred]*100}%", (50,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2, cv2.LINE_AA)
+                
+                h,w = curr_frame.shape[:2]
+                inside = self.getIsInsideArm(md.box,overlay_mask,h,w)
                 if (label == "Valid"):
-                    h,w = curr_frame.shape[:2]
-                    inside = self.getIsInsideArm(md.box,overlay_mask,h,w)
                     if (inside != False):
                         cx = (md.box[0] + md.box[2])/2
                         cy = (md.box[1] + md.box[3])/2
                         maskCenter = self.get_polygon_center(inside,w,h)
                         distance_to_center = md.euclidDistance((cx,cy),(int(maskCenter[0]),int(maskCenter[1])))/100
                         print(f"Distance: {distance_to_center}")
-                        if (lastArm != inside and distance_to_center <= 0.6):
+                        if (lastArm != inside and distance_to_center <= 0.5):
                             if (inside not in armLog):
                                 armLog[inside] = 1
                             else:
@@ -208,7 +208,7 @@ class RAM_Analysis:
                 if (i > 1):
                     wrong += i-1
                 
-            print(f"right: {right} wrong: {wrong}")
+            # print(f"right: {right} wrong: {wrong}")
             cv2.putText(curr_frame, f"{original_filename}", (50,100), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,0), 2, cv2.LINE_AA)
             cv2.putText(curr_frame, f"right: {right}", (50,150), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,0), 2, cv2.LINE_AA)
             cv2.putText(curr_frame, f"wrong: {wrong}", (50,200), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,0,255), 2, cv2.LINE_AA)
@@ -217,7 +217,8 @@ class RAM_Analysis:
 
             # --- write frame to video ---
             self.progress_video = int((frameIdx/totalFrame)*100)
-            print(f"video progress: {self.progress_video}%")
+            # print(f"video progress: {self.progress_video}%")
+            md.progress_bar(frameIdx+1,totalFrame,message=f"Right: {right}, Wrong: {wrong}")
             out.write(curr_frame)
         
         self.progress_video = -1

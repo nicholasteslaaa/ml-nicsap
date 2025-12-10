@@ -1,5 +1,4 @@
-import cv2, numpy as np, pandas as pd,matplotlib.pyplot as plt,time,sys
-from collections import Counter
+import cv2, numpy as np,sys
 
 
 class movementDetectionModel:
