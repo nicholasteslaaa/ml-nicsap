@@ -13,7 +13,7 @@ $$
 Precision = \frac{1967}{2323}
 $$
 $$
-Precision =  0.8467 * 100 = 84.67%
+Precision =  0.8467 * 100 = 84.67\%
 $$
 
 # Evaluasi Fungsionalitas
