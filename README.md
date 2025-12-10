@@ -40,15 +40,8 @@ Maaf, dataset berupa video mentah yang telah diklasifikasikan:
 
 **Perhitungan Precision:**
 
-$$$
-Precision = \frac{TP}{TP+FP}
+<img width="454" height="455" alt="image" src="https://github.com/user-attachments/assets/cdbae3bc-bab9-444e-90eb-b7dac4a1d6d7" />
 
-Precision = \frac{1967}{1967+356}
-
-Precision = \frac{1967}{2323}
-
-Precision =  0.8467
-$$$
 
 ---
 
