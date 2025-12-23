@@ -16,7 +16,7 @@ function App() {
   const [outputPath, setOutputPath] = useState([]);
   // ⭐ NEW: brightness slider state
   const [brightness, setBrightness] = useState(100);
-  const [contrast, setContrast] = useState(100);
+  // const [contrast, setContrast] = useState(100);
   
 
   // ⭐ draw the first frame with current brightness filter
@@ -29,7 +29,7 @@ function App() {
     if (!ctx) return;
 
     // ⭐ Apply brightness controlled by slider
-    ctx.filter = `brightness(${brightness}%) contrast(${contrast})`;
+    ctx.filter = `brightness(${brightness}%)`;
 
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
@@ -58,7 +58,7 @@ function App() {
     };
 
     video.onseeked = () => drawFirstFrame(video);
-  }, [brightness,contrast]);
+  }, [brightness]);
 
   const fetchEmoticon = async () => {
     try {
@@ -182,16 +182,6 @@ function App() {
             value={brightness}
             onInput={(e) => setBrightness(Number((e.target as HTMLInputElement).value))}
           />
-        <br />
-        <label>Contrast: {contrast}</label>
-        <input
-          type="range"
-          min="0"
-          max="10000"
-          value={contrast}
-          onInput={(e) => setContrast(Number((e.target as HTMLInputElement).value))}
-          
-        />
       </div>
 
       <input type="file" accept="video/*" onChange={handleFileChange} />
@@ -199,7 +189,7 @@ function App() {
       <center>
         <CanvasMaskExport ref={canvasRef} />
       </center>
-
+      <p>{getYoloCoor()}</p>
       <button onClick={uploadVideo}>Upload Video</button>
 
       {progress > 0 && videoProgress < 0 && <p>Uploading: {progress}%</p>}
